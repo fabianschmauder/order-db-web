@@ -1,7 +1,8 @@
 package de.neuefische.orderdbweb.service;
 
+import de.neuefische.orderdbweb.db.OrderDb;
 import de.neuefische.orderdbweb.model.Order;
-import de.neuefische.orderdbweb.model.Product;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,8 +10,14 @@ import java.util.List;
 @Service
 public class OrderService {
 
+  private final OrderDb orderDb;
+
+  @Autowired
+  public OrderService(OrderDb orderDb) {
+    this.orderDb = orderDb;
+  }
 
   public List<Order> getAllOrders(){
-    return List.of(new Order("3", List.of(new Product("7", "Some Product"))));
+    return orderDb.getAllOrders();
   }
 }
