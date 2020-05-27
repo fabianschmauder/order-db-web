@@ -1,7 +1,8 @@
 package de.neuefische.orderdbweb.controller;
 
 import de.neuefische.orderdbweb.model.Order;
-import de.neuefische.orderdbweb.model.Product;
+import de.neuefische.orderdbweb.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,9 +13,16 @@ import java.util.List;
 @RequestMapping("orders")
 public class OrderController {
 
+  private final OrderService orderService;
+
+  @Autowired
+  public OrderController(OrderService orderService) {
+    this.orderService = orderService;
+  }
+
   @GetMapping
   public List<Order> getAllOrders(){
-    return List.of(new Order("1", List.of(new Product("7", "Some Product"))));
+    return orderService.getAllOrders();
   }
 
 }
