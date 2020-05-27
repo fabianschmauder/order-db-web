@@ -1,6 +1,6 @@
 package de.neuefische.orderdbweb.db;
 
-import de.neuefische.orderdbweb.controller.model.Product;
+import de.neuefische.orderdbweb.model.Product;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package de.neuefische.orderdbweb.service;
 
-import de.neuefische.orderdbweb.controller.model.Product;
+import de.neuefische.orderdbweb.model.Product;
 import de.neuefische.orderdbweb.db.ProductDb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

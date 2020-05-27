@@ -1,4 +1,4 @@
-package de.neuefische.orderdbweb.controller.model;
+package de.neuefische.orderdbweb.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
