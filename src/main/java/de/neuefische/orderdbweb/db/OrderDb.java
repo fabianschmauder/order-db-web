@@ -15,7 +15,6 @@ public class OrderDb {
     return orders;
   }
 
-
   public void addOrder(Order newOrder) {
     this.orders.add(newOrder);
   }

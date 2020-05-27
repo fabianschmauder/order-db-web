@@ -4,6 +4,7 @@ import de.neuefische.orderdbweb.model.Product;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class ProductDb {
@@ -18,12 +19,12 @@ public class ProductDb {
     return products;
   }
 
-  public Product findById(String productId) {
+  public Optional<Product> findById(String productId) {
     for (Product product : products) {
       if(product.getId().equals(productId)){
-        return product;
+        return Optional.of(product);
       }
     }
-    return null;
+    return Optional.empty();
   }
 }

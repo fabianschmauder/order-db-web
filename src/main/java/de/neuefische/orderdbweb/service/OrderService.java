@@ -5,10 +5,13 @@ import de.neuefische.orderdbweb.db.ProductDb;
 import de.neuefische.orderdbweb.model.Order;
 import de.neuefische.orderdbweb.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -23,7 +26,7 @@ public class OrderService {
     this.productDb = productDb;
   }
 
-  public List<Order> getAllOrders(){
+  public List<Order> getAllOrders() {
     return orderDb.getAllOrders();
   }
 
@@ -31,10 +34,12 @@ public class OrderService {
     List<Product> productsToOrder = new ArrayList<>();
 
     for (String productId : productIds) {
-      Product product = productDb.findById(productId);
-      productsToOrder.add(product);
+      Optional<Product> product = productDb.findById(productId);
+      if (product.isEmpty()) {
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "product with id " + productId + " not found");
+      }
+      productsToOrder.add(product.get());
     }
-
 
     String uuid = UUID.randomUUID().toString();
     Order newOrder = new Order(uuid, productsToOrder);
