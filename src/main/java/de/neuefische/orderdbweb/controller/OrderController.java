@@ -4,6 +4,8 @@ import de.neuefische.orderdbweb.model.Order;
 import de.neuefische.orderdbweb.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +25,11 @@ public class OrderController {
   @GetMapping
   public List<Order> getAllOrders(){
     return orderService.getAllOrders();
+  }
+
+  @PutMapping
+  public Order addOrder(@RequestBody List<String> productIds){
+    return orderService.addOrder(productIds);
   }
 
 }

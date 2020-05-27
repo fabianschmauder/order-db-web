@@ -17,4 +17,13 @@ public class ProductDb {
   public List<Product> getProducts() {
     return products;
   }
+
+  public Product findById(String productId) {
+    for (Product product : products) {
+      if(product.getId().equals(productId)){
+        return product;
+      }
+    }
+    return null;
+  }
 }
